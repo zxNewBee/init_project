@@ -2,7 +2,6 @@ package main
 
 import (
 	"bytes"
-	"context"
 	"fmt"
 	"sync"
 	"time"
@@ -143,10 +142,6 @@ func plusOne(arr []uint) []uint {
 	return arrHead
 }
 
-func deleteRepeatElement(arr []int) []int {
-	return []int{}
-}
-
 func calculateCap() {
 	nums := []int{1, 2}
 	nums = append(nums, 2, 3, 4)
@@ -156,16 +151,6 @@ func newSlice() []int {
 	arr := [3]int{1, 2, 3}
 	slice := arr[0:1]
 	return slice
-}
-
-func worker(ctx context.Context, wg *sync.WaitGroup) {
-	defer wg.Done()
-	for {
-		select {
-		case <-ctx.Done():
-			return
-		}
-	}
 }
 
 func workerForWaitGroup(id int, wg *sync.WaitGroup) {
