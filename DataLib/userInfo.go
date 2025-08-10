@@ -1,4 +1,4 @@
-package db
+package dataLib
 
 import (
 	"database/sql"

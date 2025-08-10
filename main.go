@@ -8,16 +8,15 @@ import (
 	"sort"
 	"strconv"
 	"sync"
+	"sync/atomic"
 	"time"
 
-	"sync/atomic"
-
 	"github.com/urfave/cli/v2"
+	dataLib "github.com/zxNewBee/init_project/DataLib"
+
 	"golang.org/x/sync/singleflight"
 	"gorm.io/driver/mysql"
 	"gorm.io/gorm"
-	
-	"github.com/zxNewBee/init_project/Db"
 )
 
 func main() {
@@ -369,7 +368,7 @@ func get(index int, key string) (interface{}, error) {
 	var err error
 	if atomic.AddInt32(&offset, 1) == 3 { // 假设偏移�?offset == 3 执行耗时长，超时失败�?
 		time.Sleep(time.Microsecond * 500)
-		err = fmt.Errorf("耗时�?)
+		err = fmt.Errorf("")
 		fmt.Printf("faild index %d\n", index)
 	}
 	fmt.Printf("success index %d\n", index)
@@ -454,7 +453,7 @@ func calculate(c *cli.Context, op string) error {
 		}
 		result = a / b
 	default:
-		return fmt.Errorf("未知操作�?)
+		return fmt.Errorf("")
 	}
 
 	// 输出结果
@@ -629,5 +628,5 @@ func connectSql() {
 		panic(err)
 	}
 	defer db.DB()
-	DataLib.Run(db)
+	dataLib.Run(db)
 }
